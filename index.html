@@ -1,0 +1,550 @@
+  <!-- Thank You Modal -->
+  <div id="thankyou-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
+    <div style="max-width:480px;margin:80px auto;background:#231f1e;padding:36px 28px;border-radius:18px;color:#fff;box-shadow:0 2px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
+      <h2 style="color:#fc5c2c;font-size:2rem;margin-bottom:12px;">🎉 Thank You!</h2>
+      <p style="font-size:1.2rem;margin-bottom:18px;">You're officially on the Sports Hub waitlist.<br>We'll keep you posted when we launch in your city!</p>
+      <p style="font-size:1.1rem;color:#fc5c2c;margin-bottom:18px;">In the meantime, follow us on social for updates and sneak peeks.</p>
+      <div style="margin-bottom:18px;">
+        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">Instagram</a>
+        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">TikTok</a>
+        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">X</a>
+      </div>
+      <button id="close-thankyou" style="position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 12px;cursor:pointer;">Close</button>
+    </div>
+  </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sports Hub — Play Anywhere. Connect Everywhere.</title>
+  <meta name="description" content="Sports Hub helps you find and join local pickup games with real-time maps and a social feed for any sport! Join the waitlist for early access." />
+  <meta name="keywords" content="pickup games, sports, basketball, soccer, volleyball, community, app, local sports, join games, host games, sports hub" />
+  <meta property="og:site_name" content="Sports Hub" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sports Hub — Play Anywhere. Connect Everywhere." />
+  <meta name="twitter:description" content="Find pickup games near you, host runs, and share highlights. Multi-sport, geo-powered, social." />
+  <meta name="twitter:image" content="/og-image.jpg" />
+  <meta name="robots" content="index,follow" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sports Hub — Play Anywhere. Connect Everywhere." />
+  <meta property="og:description" content="Find pickup games near you, host runs, and share highlights. Multi-sport, geo-powered, social." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:url" content="https://example.com" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&family=Orbitron:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root{
+  --bg:#231f1e;
+  --panel:#231f1e;
+  --accent:#fc5c2c;
+  --accent-2:#fc5c2c;
+  --text:#ffffff;
+  --muted:#b9bcc6;
+  --line:#3a3533;
+  --danger:#fc5c2c;
+  --success:#38e1a8;
+  --base-font-size: 1rem;
+  --heading-size: clamp(2rem, 5vw, 3.5rem);
+  --section-padding: clamp(18px, 5vw, 48px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+          margin:0;
+          font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+          background: var(--bg);
+          color:var(--text);
+          font-size:var(--base-font-size);
+          line-height:1.5;
+        }
+    a{color:var(--accent);text-decoration:none}
+  .container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  header {position:sticky;top:0;z-index:50;background:rgba(35,31,30,.98);backdrop-filter:blur(8px);}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--accent)}
+    .brand img{height:36px;width:auto;border-radius:6px;display:block}
+    .brand strong{font-family:Poppins,Inter,sans-serif;letter-spacing:.2px}
+  .links a{margin-left:18px;color:var(--text);text-shadow:0 1px 6px rgba(35,31,30,0.18);margin-top:32px;}
+.links a:not(.cta-btn){margin-top:24px;}
+  .links a:hover{color:var(--accent)}
+  .cta-btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
+.links .cta-btn{margin-top:16px;}
+
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:56px 0}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,60,0,.1);border:1px solid rgba(255,60,0,.35);color:var(--accent);padding:8px 12px;border-radius:999px;font-size:14px}
+    h1{font-family:Poppins,Inter,sans-serif;font-size:var(--heading-size);line-height:1.1;margin:1em 0 .5em}
+    .sub{font-size:18px;color:var(--muted);max-width:60ch}
+  .card{background:rgba(35,31,30,.96);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .waitlist{display:flex;gap:10px;margin-top:14px}
+    .waitlist input[type=email]{flex:1;padding:14px 16px;border-radius:10px;border:1px solid #2a2a32;background:#0c0c12;color:var(--text)}
+  .btn{padding:14px 16px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
+  .btn:hover{filter:brightness(1.08);background:var(--accent);}
+    .helper{font-size:12px;color:var(--muted);margin-top:8px}
+
+    .mock{aspect-ratio:16/10;background:linear-gradient(180deg, rgba(255,106,51,.18), rgba(255,60,0,.12));border:1px dashed var(--line);border-radius:16px;display:grid;place-items:center;color:var(--muted)}
+
+    .section{padding:var(--section-padding) 0}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:8px 0}
+    .feature{padding:18px;border-radius:14px;background:#111114;border:1px solid var(--line)}
+    .feature h3{margin:8px 0 6px}
+    .feature p{margin:0;color:var(--muted)}
+
+    .how{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{background:#111114;border:1px solid var(--line);border-radius:14px;padding:16px}
+    .num{width:32px;height:32px;display:grid;place-items:center;border-radius:999px;background:var(--accent);color:#111;font-weight:800}
+
+    .feed{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .post{aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#0b0b11;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted)}
+
+    .map-embed{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+
+    .store-badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .store-badges img{height:44px;width:auto;filter:grayscale(15%)}
+
+    .blog{margin:16px 0}
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .post-card{background:#111114;border:1px solid var(--line);border-radius:14px;padding:16px}
+    .post-card h3{margin:0 0 6px}
+    .post-card p{margin:0;color:var(--muted)}
+
+    .faq{display:grid;grid-template-columns:1fr;gap:10px}
+    .faq details{background:#111114;border:1px solid var(--line);border-radius:10px;padding:12px}
+    .faq summary{cursor:pointer;font-weight:600}
+
+    footer{margin-top:36px;padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+    .social a{margin-left:10px;color:var(--muted)}
+    .social a:hover{color:var(--text)}
+
+    /* Cookie banner */
+    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:#111114;border:1px solid var(--line);border-radius:12px;padding:14px;display:none;z-index:99}
+    .cookie p{margin:0 0 8px;color:var(--muted)}
+    .cookie .row{display:flex;gap:8px;justify-content:flex-end}
+    .cookie button{padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:#0e0e12;color:var(--text)}
+    .cookie .accept{background:var(--accent);color:#111;border:none}
+
+    @media (max-width: 960px){
+  .hero{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr 1fr}
+  .how{grid-template-columns:1fr 1fr}
+  .feed{grid-template-columns:1fr 1fr}
+  .posts{grid-template-columns:1fr 1fr}
+  h1{font-size:clamp(1.5rem, 7vw, 2.5rem);}
+  .section{padding:clamp(12px, 4vw, 32px) 0;}
+    }
+    @media (max-width: 560px){
+  .features,.how,.feed,.posts{grid-template-columns:1fr}
+  .waitlist{flex-direction:column}
+  .btn{width:100%}
+  h1{font-size:clamp(1.2rem, 8vw, 2rem);}
+  .section{padding:clamp(8px, 3vw, 18px) 0;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="Sports Hub Home">
+  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub logo with text 'Sports Hub'" id="brandLogo" loading="eager" style="height:80px;max-width:220px;width:auto;border-radius:8px;background:transparent;padding:0;display:block;object-fit:contain;margin:auto 0;">
+  <strong style="font-size:2.8rem;font-family:'Orbitron', 'Arial', sans-serif;font-weight:400;letter-spacing:2px;color:#fff;text-shadow:0 2px 16px rgba(35,31,30,0.22);margin-left:18px;">Sports Hub</strong>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <button id="nav-toggle" aria-label="Open menu" style="display:none;background:none;border:none;font-size:2rem;color:var(--accent);margin-right:12px;">
+          <span aria-hidden="true">☰</span>
+        </button>
+        <div id="nav-menu">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#feed">Social</a>
+          <a href="#signup" class="cta-btn">Join waitlist</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+   <!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <span class="badge" role="status">🚀 Coming Soon — Early Access Open</span>
+  <h1 style="font-size:2.2rem;line-height:1.1;margin:18px 0 0 0;letter-spacing:1px;">Find pickup games</h1>
+  <h1 style="font-size:2.2rem;line-height:1.1;margin:6px 0 10px 0;letter-spacing:1px;">near you — instantly.</h1>
+    <p class="sub">
+      Sports Hub is a geo-powered sports community. Discover local runs at parks & gyms,
+      host games, and share your highlights — for any sport!
+    </p>
+    <a href="#signup" class="cta-btn" style="font-size:1.3rem;margin:18px 0 0 0;display:inline-block;box-shadow:0 2px 12px rgba(252,92,44,0.18);">Get Early Access</a>
+    <div aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;">
+      <svg width="100%" height="100" viewBox="0 0 1200 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100px;">
+        <path d="M0,60 Q600,120 1200,60" stroke="#fc5c2c" stroke-width="8" fill="none" opacity="0.12" />
+      </svg>
+    </div>
+
+    <!-- Sign-up card -->
+    <div class="card" aria-labelledby="waitlist-title">
+      <h2 id="waitlist-title" style="margin:0 0 8px;font-size:18px">Get Early Access</h2>
+  <p class="sub" style="margin:0 0 12px">Join the waitlist and we’ll email you when we launch in your city!</p>
+
+      <!-- Email signup form -->
+  <form id="waitlist-form" class="waitlist-form" action="https://script.google.com/macros/s/AKfycbzXXGO4y68VXFSBEhPhlq-cLWkDJ6cJApy-46jpH2jUg1-XTU_e6yj0xqPgcCre2ifeEYA/exec" method="POST" novalidate>
+        <div class="waitlist" style="margin-top:0">
+          <label for="waitlist-email" class="visually-hidden">Email</label>
+          <input id="waitlist-email" name="email" type="email" placeholder="you@email.com" required aria-required="true" />
+          <button class="btn" type="submit">Join Waitlist</button>
+        </div>
+        <p class="helper">No spam. Unsubscribe anytime.</p>
+      </form>
+
+      <!-- App badges (coming soon) -->
+      <div class="store-badges" aria-label="App stores">
+        <a href="#" aria-label="App Store coming soon">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store (coming soon)">
+        </a>
+        <a href="#" aria-label="Google Play coming soon">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play (coming soon)">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right-side visual -->
+    <div class="mock" aria-hidden="true" style="padding:0;min-height:350px;background:none;display:flex;align-items:flex-start;justify-content:center;margin-top:-32px;">
+  <div id="hero-map" style="width:100%;height:450px;border-radius:16px;"></div>
+      </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials" style="background:rgba(35,31,30,0.98);margin-top:-24px;">
+  <h2 style="margin:6px 0 10px">What players are saying</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
+    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      “I never thought I'd find a pickup basketball game so close to home. The app makes it super easy to join in!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Jordan, Raleigh</span>
+    </blockquote>
+    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      “I’ve connected with a bunch of new players and now have a regular soccer crew every Saturday. Highly recommend!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Taylor, Durham</span>
+    </blockquote>
+    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      “Getting alerts for games in Cary means I never miss out. The community is super welcoming and fun!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Chris, Cary</span>
+    </blockquote>
+  </div>
+</section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <h2 style="margin:6px 0 10px">What you can do</h2>
+      <div class="features">
+        <article class="feature">
+          <h3>📍 Geo game discovery</h3>
+          <p>See nearby pickup games by sport, time, and skill level. Tap to join.</p>
+        </article>
+        <article class="feature">
+          <h3>➕ Host & fill your runs</h3>
+          <p>Create games, set player caps, and notify followers when a slot opens.</p>
+        </article>
+        <article class="feature">
+          <h3>🎥 Social sports feed</h3>
+          <p>Share highlights, tag parks & gyms, and follow local athletes.</p>
+        </article>
+        <article class="feature">
+          <h3>🔔 Smart notifications</h3>
+          <p>Get alerts when new games pop up near you or a slot opens on a run you follow.</p>
+        </article>
+        <article class="feature">
+          <h3>🛡️ Trust & safety</h3>
+          <p>Profile verification, reports, and host controls keep games welcoming.</p>
+        </article>
+        <article class="feature">
+          <h3>📊 For organizers</h3>
+          <p>Recurring events, RSVPs, and simple roster tools help you grow a community.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <h2 style="margin:6px 0 10px">How it works</h2>
+      <div class="how">
+        <div class="step"><div class="num">1</div><h4>Set your sport & area</h4><p class="sub">Pick basketball, soccer, pickleball and more; set distance & skill.</p></div>
+        <div class="step"><div class="num">2</div><h4>Discover games</h4><p class="sub">Browse live maps and filters to find runs that match your schedule.</p></div>
+        <div class="step"><div class="num">3</div><h4>Join or host</h4><p class="sub">RSVP in a tap or create your own game with caps, rules and chat.</p></div>
+        <div class="step"><div class="num">4</div><h4>Share highlights</h4><p class="sub">Post clips, tag parks & teammates, and grow your local following.</p></div>
+      </div>
+    </section>
+
+    <!-- SOCIAL FEED PREVIEW -->
+    <section class="section" id="feed">
+      <h2 style="margin:6px 0 10px">Community feed (preview)</h2>
+      <div class="feed">
+        <div class="post" style="background:#181824;box-shadow:0 2px 12px rgba(44,92,252,0.08);position:relative;">
+          <img src="assets/img/instagram.png" alt="Instagram highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+          <div style="margin-top:56px;text-align:center;">
+            <span style="font-weight:700;color:#fc5c2c;">@theSportsHubinc</span><br>
+            <span style="color:#fff;">Check out our latest IG highlight!</span>
+          </div>
+          <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);opacity:0.85;"></div>
+        </div>
+        <div class="post" style="background:#1a1a2a;box-shadow:0 2px 12px rgba(44,252,92,0.08);position:relative;">
+          <img src="assets/img/Sports Hub LOGO_A6.png" alt="User avatar" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+          <div style="margin-top:56px;text-align:center;">
+            <span style="font-weight:700;color:#fc5c2c;">Taylor (Durham)</span><br>
+            <span style="color:#fff;">Scored 22 points at Lakewood Park 🏀</span>
+            <span style="display:inline-block;background:#fc5c2c;color:#fff;border-radius:8px;padding:2px 8px;font-size:0.85rem;margin-top:6px;">Player of the Week</span>
+          </div>
+          <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);opacity:0.85;"></div>
+        </div>
+        <div class="post" style="background:#23233a;box-shadow:0 2px 12px rgba(252,44,92,0.08);position:relative;">
+          <img src="assets/img/tiktok.png" alt="TikTok highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+          <div style="margin-top:56px;text-align:center;">
+            <span style="font-weight:700;color:#fc5c2c;">@SportsHubinc</span><br>
+            <span style="color:#fff;">Watch our viral TikTok: 'Epic game at Cary courts!'</span>
+          </div>
+          <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);opacity:0.85;"></div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- BLOG PREVIEW -->
+    <section class="section blog" id="blog">
+      <h2>From the blog</h2>
+      <div class="posts">
+        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
+          <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
+          <div style="position:relative;z-index:2;padding-top:60px;">
+            <h3 style="margin-bottom:8px;color:#fff;">Why finding pickup games is hard (and how we fix it)</h3>
+            <p style="color:#fff;">We map the local sports world so you can play more with less planning.</p>
+            <div style="display:flex;align-items:center;margin-top:12px;">
+              <img src="assets/img/instagram.png" alt="Author avatar" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
+              <span style="color:#fc5c2c;font-weight:700;">By Sports Hub Team</span>
+            </div>
+          </div>
+        </article>
+        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(44,252,92,0.10);">
+          <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
+          <div style="position:relative;z-index:2;padding-top:60px;">
+            <h3 style="margin-bottom:8px;color:#fff;">Top parks for weekend runs in your city</h3>
+            <p style="color:#fff;">Community-sourced spots for hoops, soccer, volleyball and more.</p>
+            <div style="display:flex;align-items:center;margin-top:12px;">
+              <img src="assets/img/Sports Hub LOGO_A6.png" alt="Author avatar" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
+              <span style="color:#fc5c2c;font-weight:700;">By Sports Hub Team</span>
+            </div>
+          </div>
+        </article>
+        </article>
+        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
+          <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
+          <div style="position:relative;z-index:2;padding-top:60px;">
+            <h3 style="margin-bottom:8px;color:#fff;">Safety & verification at Sports Hub</h3>
+            <p style="color:#fff;">How we make pickup play more welcoming and trustworthy.</p>
+            <div style="display:flex;align-items:center;margin-top:12px;">
+              <img src="assets/img/Sports Hub LOGO_A6.png" alt="Author avatar" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
+              <span style="color:#fc5c2c;font-weight:700;">By Sports Hub Team</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details><summary>Who can use Sports Hub?</summary><p>Anyone looking to play, host, or discover local pickup games can use Sports Hub! Whether you’re a beginner, a seasoned athlete, or just want to meet new people, our platform is open to all ages and skill levels.</p></details>
+        <details><summary>When is the app launching?</summary><p>We’re targeting a private beta in the next few months. Join the waitlist to get early access!</p></details>
+        <details><summary>Which sports are supported?</summary><p>Right now, you can join games for basketball and pickleball. Soccer, football, volleyball, and more are coming soon—we plan to support all sports as our community grows!</p></details>
+        <details><summary>Can I organize a private game for my friends?</summary><p>Absolutely! Sports Hub lets you create private games, invite friends, and manage RSVPs. You control who joins and can keep your run exclusive or open it up to the community.</p></details>
+        <details><summary>How much does it cost?</summary><p>Core features are free. Organizers and power users can upgrade for pro tools. A price still has to be determined.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" id="signup">
+      <div class="card" style="text-align:center">
+        <h2>Be first on the court.</h2>
+        <p class="sub" style="margin:0 auto 16px">Join players getting early access when we launch in your city.</p>
+        <form class="waitlist" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST" novalidate>
+          <label for="signup-email" class="visually-hidden">Email</label>
+          <input id="signup-email" name="email" type="email" placeholder="you@email.com" required />
+          <button class="btn" type="submit">Join waitlist</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> Sports Hub. All rights reserved.</small>
+      <div class="social" aria-label="Social links">
+  <a href="https://instagram.com/thesportshubinc" target="_blank" rel="noopener" aria-label="Instagram">Instagram <span style="color:#fc5c2c;font-size:0.95rem;">@thesportshubinc</span></a>
+  <a href="https://tiktok.com/@sportshubinc" target="_blank" rel="noopener" aria-label="TikTok">TikTok <span style="color:#fc5c2c;font-size:0.95rem;">@sportshubinc</span></a>
+  <a href="https://twitter.com/SportsHubInc25" target="_blank" rel="noopener" aria-label="Twitter / X">Twitter / X <span style="color:#fc5c2c;font-size:0.95rem;">@SportsHubInc25</span></a>
+      </div>
+  <small><a href="#" id="privacy-link">Privacy</a> · <a href="#" id="terms-link">Terms</a></small>
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
+    <div style="max-width:600px;margin:60px auto;background:#231f1e;padding:32px 24px;border-radius:16px;color:#fff;box-shadow:0 2px 24px rgba(0,0,0,0.18);position:relative;">
+  <h2>Privacy Policy</h2>
+  <p>Sports Hub is committed to protecting your privacy and ensuring the security of your personal information. We collect only the information you voluntarily provide, such as your email address for waitlist signups and account creation. This information is used solely to provide you with access to our services, communicate updates, and improve your experience on the platform.</p>
+  <p>We do not sell, rent, or share your personal data with third parties except as required to operate the service, comply with legal obligations, or protect the rights and safety of our users. All data is stored securely and access is restricted to authorized personnel only. You may request access to, correction of, or deletion of your personal information at any time by contacting our support team.</p>
+  <p>Sports Hub uses cookies and similar technologies to enhance site functionality and analyze usage. By using our site, you consent to our use of cookies. For more details or to opt out, please review your browser settings or contact us directly.</p>
+  <p>We reserve the right to update this Privacy Policy as our services evolve. Any changes will be posted on this page, and your continued use of Sports Hub constitutes acceptance of those changes.</p>
+      <button id="close-privacy" style="position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 12px;cursor:pointer;">Close</button>
+    </div>
+  </div>
+
+  <!-- Terms of Service Modal -->
+  <div id="terms-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
+    <div style="max-width:600px;margin:60px auto;background:#231f1e;padding:32px 24px;border-radius:16px;color:#fff;box-shadow:0 2px 24px rgba(0,0,0,0.18);position:relative;">
+  <h2>Terms of Service</h2>
+  <p>By accessing or using Sports Hub, you agree to comply with these Terms of Service and all applicable laws and regulations. You must use the platform responsibly, respect other users, and refrain from any activity that may harm, disrupt, or misuse the service or its community.</p>
+  <p>Sports Hub reserves the right to modify, suspend, or discontinue any aspect of the service at any time, including features, content, or user accounts. We may moderate or remove content that violates our guidelines, and we may suspend or terminate accounts for abusive, fraudulent, or illegal behavior.</p>
+  <p>All content and materials on Sports Hub are provided "as is" without warranties of any kind. We do not guarantee uninterrupted access, error-free operation, or the accuracy of information posted by users. You use Sports Hub at your own risk, and we are not liable for any damages arising from your use of the platform.</p>
+  <p>By submitting content or information to Sports Hub, you grant us a non-exclusive, royalty-free license to use, display, and distribute that content as part of the service. You retain ownership of your personal data, subject to our Privacy Policy.</p>
+  <p>For questions, concerns, or requests regarding these Terms, please contact our support team. We reserve the right to update these Terms of Service at any time, and your continued use of Sports Hub constitutes acceptance of any changes.</p>
+      <button id="close-terms" style="position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 12px;cursor:pointer;">Close</button>
+    </div>
+  </div>
+    </div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookie">
+    <p>We use cookies for analytics and to improve your experience.</p>
+    <div class="row">
+      <button class="accept" id="cookie-accept">Accept</button>
+      <button id="cookie-decline">Decline</button>
+    </div>
+  </div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA21zV6nO1weSzc25y8NJusc3O2bCjj8nM"></script>
+  <script>
+    // Privacy & Terms modal logic
+    document.getElementById('privacy-link').onclick = function(e){
+      e.preventDefault();
+      document.getElementById('privacy-modal').style.display = 'block';
+    };
+    document.getElementById('terms-link').onclick = function(e){
+      e.preventDefault();
+      document.getElementById('terms-modal').style.display = 'block';
+    };
+    document.getElementById('close-privacy').onclick = function(){
+      document.getElementById('privacy-modal').style.display = 'none';
+    };
+    document.getElementById('close-terms').onclick = function(){
+      document.getElementById('terms-modal').style.display = 'none';
+    };
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    function updateNavDisplay() {
+      if(window.innerWidth < 700){
+        navToggle.style.display = 'inline-block';
+        navMenu.style.display = 'none';
+      } else {
+        navToggle.style.display = 'none';
+        navMenu.style.display = 'flex';
+      }
+    }
+    updateNavDisplay();
+    window.addEventListener('resize', updateNavDisplay);
+    navToggle.addEventListener('click', function(){
+      navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+      navToggle.setAttribute('aria-expanded', navMenu.style.display === 'flex');
+    });
+    // Hidden label helper
+    (function(){
+      const style=document.createElement('style');
+      style.textContent='.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}';
+      document.head.appendChild(style);
+    })();
+
+    // Google Maps initialization
+    window.initMap = function() {
+      // Only hero map at top
+      const heroMapDiv = document.getElementById('hero-map');
+      if(heroMapDiv){
+        // Default to NYC if geolocation fails
+        const defaultLocation = { lat: 40.781219, lng: -73.974187 };
+        function showMap(center) {
+          const heroMap = new google.maps.Map(heroMapDiv, {
+            center,
+            zoom: 13,
+            mapTypeId: 'roadmap',
+            disableDefaultUI: true
+          });
+          new google.maps.Marker({
+            position: center,
+            map: heroMap,
+            title: 'Your Location'
+          });
+        }
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(pos) {
+            showMap({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+          }, function() {
+            showMap(defaultLocation);
+          });
+        } else {
+          showMap(defaultLocation);
+        }
+      }
+    };
+    if (window.google && window.google.maps) {
+      window.initMap();
+    } else {
+      window.addEventListener('load', function() {
+        if (window.google && window.google.maps) window.initMap();
+      });
+    }
+
+    // Simple form handling
+    const forms = document.querySelectorAll('form[action^="https://formspree.io"]');
+    function showToast(msg){
+      const t=document.createElement('div');
+       t.textContent=msg.replace(/\\/g, '');
+      t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#121217;border:1px solid #2a2a32;color:#fff;padding:12px 16px;border-radius:10px;z-index:9999;';
+      document.body.appendChild(t); setTimeout(()=>t.remove(),2800);
+    }
+    forms.forEach(form=>{
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const email = form.querySelector('input[type=email]');
+        if(!email.checkValidity()){
+          email.style.borderColor = 'var(--danger)';
+          showToast('Please enter a valid email.');
+          return;
+        }
+        const data = new FormData(form);
+        try{
+          const res = await fetch(form.action, { method:'POST', body:data, headers:{'Accept':'application/json'} });
+          if(res.ok){
+            form.reset();
+            document.getElementById('thankyou-modal').style.display = 'block';
+          } else {
+            showToast('Could not submit. Try again later.');
+          }
+        }catch(err){ showToast('Network error.'); }
+      });
+    });
+    document.getElementById('close-thankyou').onclick = function(){
+      document.getElementById('thankyou-modal').style.display = 'none';
+    };
+
+    // Footer year
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Cookie banner logic
+    const cookie = document.getElementById('cookie');
+    const consent = localStorage.getItem('cookieConsent');
+    if(!consent){ cookie.style.display='block'; }
+    document.getElementById('cookie-accept').onclick = ()=>{ localStorage.setItem('cookieConsent','accepted'); cookie.style.display='none'; };
+    document.getElementById('cookie-decline').onclick = ()=>{ localStorage.setItem('cookieConsent','declined'); cookie.style.display='none'; };
+  </script>
+</body>
+</html>
