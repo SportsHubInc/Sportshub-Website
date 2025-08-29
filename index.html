@@ -37,117 +37,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&family=Orbitron:wght@400&display=swap" rel="stylesheet">
   <style>
-    :root{
-  --bg:#231f1e;
-  --panel:#231f1e;
-  --accent:#fc5c2c;
-  --accent-2:#fc5c2c;
-  --text:#ffffff;
-  --muted:#b9bcc6;
-  --line:#3a3533;
-  --danger:#fc5c2c;
-  --success:#38e1a8;
-  --base-font-size: 1rem;
-  --heading-size: clamp(2rem, 5vw, 3.5rem);
-  --section-padding: clamp(18px, 5vw, 48px);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-          margin:0;
-          font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-          background: var(--bg);
-          color:var(--text);
-          font-size:var(--base-font-size);
-          line-height:1.5;
-        }
-    a{color:var(--accent);text-decoration:none}
-  .container{max-width:1120px;margin:0 auto;padding:0 4vw}
 
-  header {position:sticky;top:0;z-index:50;background:rgba(35,31,30,.98);backdrop-filter:blur(8px);}
-    .nav{display:flex;align-items:center;justify-content:space-between;min-height:56px;height:8vh;}
-  .brand{display:flex;align-items:center;gap:12px;color:var(--accent)}
-    .brand img{height:2.5rem;width:auto;border-radius:6px;display:block;max-width:28vw;}
-    .brand strong{font-family:Poppins,Inter,sans-serif;letter-spacing:.2px}
-  .links a{margin-left:2vw;color:var(--text);text-shadow:0 1px 6px rgba(35,31,30,0.18);margin-top:2vh;}
-.links a:not(.cta-btn){margin-top:1.5vh;}
-  .links a:hover{color:var(--accent)}
-  .cta-btn{background:var(--accent);color:#fff;padding:0.7em 1.1em;border-radius:10px;font-weight:700;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
-.links .cta-btn{margin-top:1em;}
 
-  .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:2vw;align-items:center;padding:6vw 0}
-  .badge{display:inline-flex;align-items:center;gap:0.5em;background:rgba(255,60,0,.1);border:1px solid rgba(255,60,0,.35);color:var(--accent);padding:0.5em 1em;border-radius:999px;font-size:0.95em}
-  h1{font-family:Poppins,Inter,sans-serif;font-size:var(--heading-size);line-height:1.1;margin:1em 0 .5em;word-break:break-word;}
-  .sub{font-size:1.1rem;color:var(--muted);max-width:60ch}
-  .card{background:rgba(35,31,30,.96);border:1px solid var(--line);border-radius:1em;padding:1.2em}
-  .waitlist{display:flex;gap:0.7em;margin-top:1em}
-  .waitlist input[type=email]{flex:1;padding:1em 1.1em;border-radius:10px;border:1px solid #2a2a32;background:#0c0c12;color:var(--text)}
-  .btn{padding:1em 1.1em;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
-  .btn:hover{filter:brightness(1.08);background:var(--accent);}
-  .helper{font-size:0.85em;color:var(--muted);margin-top:0.5em}
-
-  .mock{aspect-ratio:16/10;background:linear-gradient(180deg, rgba(255,106,51,.18), rgba(255,60,0,.12));border:1px dashed var(--line);border-radius:1em;display:grid;place-items:center;color:var(--muted)}
-
-  .section{padding:var(--section-padding) 0}
-  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;margin:0.5em 0}
-  .feature{padding:1.2em;border-radius:1em;background:#111114;border:1px solid var(--line)}
-    .feature h3{margin:8px 0 6px}
-    .feature p{margin:0;color:var(--muted)}
-
-  .how{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2vw}
-  .step{background:#111114;border:1px solid var(--line);border-radius:1em;padding:1em}
-  .num{width:2.2em;height:2.2em;display:grid;place-items:center;border-radius:999px;background:var(--accent);color:#111;font-weight:800}
-
-  .feed{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw}
-  .post{aspect-ratio:1/1;border-radius:0.8em;overflow:hidden;background:#0b0b11;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted)}
-
-  .map-embed{border:1px solid var(--line);border-radius:1em;overflow:hidden}
-
-  .store-badges{display:flex;gap:0.8em;flex-wrap:wrap;margin-top:0.8em}
-  .store-badges img{height:2.8em;width:auto;filter:grayscale(15%)}
-
-  .blog{margin:1em 0}
-  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2vw}
-  .post-card{background:#111114;border:1px solid var(--line);border-radius:1em;padding:1em}
-    .post-card h3{margin:0 0 6px}
-    .post-card p{margin:0;color:var(--muted)}
-
-  .faq{display:grid;grid-template-columns:1fr;gap:0.7em}
-  .faq details{background:#111114;border:1px solid var(--line);border-radius:0.7em;padding:0.7em}
-  .faq summary{cursor:pointer;font-weight:600}
-
-  footer{margin-top:2.5em;padding:1.5em 0;border-top:1px solid var(--line);color:var(--muted);font-size:0.95em}
-  .foot{display:flex;justify-content:space-between;gap:0.8em;flex-wrap:wrap;align-items:center}
-  .social a{margin-left:0.7em;color:var(--muted)}
-  .social a:hover{color:var(--text)}
-
-    /* Cookie banner */
-  .cookie{position:fixed;left:2vw;right:2vw;bottom:2vw;background:#111114;border:1px solid var(--line);border-radius:1em;padding:1em;display:none;z-index:99}
-  .cookie p{margin:0 0 0.5em;color:var(--muted)}
-  .cookie .row{display:flex;gap:0.5em;justify-content:flex-end}
-  .cookie button{padding:0.7em 1em;border-radius:0.7em;border:1px solid var(--line);background:#0e0e12;color:var(--text)}
-  .cookie .accept{background:var(--accent);color:#111;border:none}
-
-    @media (max-width: 1024px){
-      .container{padding:0 2vw;}
-      .hero{grid-template-columns:1fr;gap:3vw;padding:4vw 0;}
-      .features{grid-template-columns:1fr 1fr;gap:2vw;}
-      .how{grid-template-columns:1fr 1fr;gap:2vw;}
-      .feed{grid-template-columns:1fr 1fr;gap:2vw;}
-      .posts{grid-template-columns:1fr 1fr;gap:2vw;}
-      h1{font-size:clamp(1.5rem, 7vw, 2.5rem);}
-      .section{padding:clamp(12px, 4vw, 32px) 0;}
-      .brand img{max-width:38vw;height:2.2rem;}
-    }
-    @media (max-width: 700px){
-      .container{padding:0 1vw;}
-      .features,.how,.feed,.posts{grid-template-columns:1fr;gap:1vw;}
-      .waitlist{flex-direction:column;gap:0.5em;}
-      .btn{width:100%}
-      h1{font-size:clamp(1.2rem, 8vw, 2rem);}
-      .section{padding:clamp(8px, 3vw, 18px) 0;}
-      .brand img{max-width:60vw;height:2rem;}
-    }
   </style>
 </head>
 <body>
@@ -223,16 +114,16 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section" id="testimonials" style="background:rgba(35,31,30,0.98);margin-top:-24px;">
+<section class="section" id="testimonials">
   <h2 style="margin:6px 0 10px">What players are saying</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
-    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+  <div class="features">
+  <blockquote class="feature" style="color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       “I never thought I'd find a pickup basketball game so close to home. The app makes it super easy to join in!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Jordan, Raleigh</span>
     </blockquote>
-    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+  <blockquote class="feature" style="color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       “I’ve connected with a bunch of new players and now have a regular soccer crew every Saturday. Highly recommend!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Taylor, Durham</span>
     </blockquote>
-    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+  <blockquote class="feature" style="color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       “Getting alerts for games in Cary means I never miss out. The community is super welcoming and fun!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Chris, Cary</span>
     </blockquote>
   </div>
@@ -241,8 +132,8 @@
     <!-- FEATURES -->
     <section class="section" id="features">
       <h2 style="margin:6px 0 10px">What you can do</h2>
-      <div class="features">
-        <article class="feature">
+  <div class="features">
+  <article class="feature">
           <h3>📍 Geo game discovery</h3>
           <p>See nearby pickup games by sport, time, and skill level. Tap to join.</p>
         </article>
@@ -272,7 +163,7 @@
     <!-- HOW IT WORKS -->
     <section class="section" id="how">
       <h2 style="margin:6px 0 10px">How it works</h2>
-      <div class="how">
+  <div class="how">
         <div class="step"><div class="num">1</div><h4>Set your sport & area</h4><p class="sub">Pick basketball, soccer, pickleball and more; set distance & skill.</p></div>
         <div class="step"><div class="num">2</div><h4>Discover games</h4><p class="sub">Browse live maps and filters to find runs that match your schedule.</p></div>
         <div class="step"><div class="num">3</div><h4>Join or host</h4><p class="sub">RSVP in a tap or create your own game with caps, rules and chat.</p></div>
@@ -283,7 +174,7 @@
     <!-- SOCIAL FEED PREVIEW -->
     <section class="section" id="feed">
       <h2 style="margin:6px 0 10px">Community feed (preview)</h2>
-      <div class="feed">
+  <div class="feed">
         <div class="post" style="background:#181824;box-shadow:0 2px 12px rgba(44,92,252,0.08);position:relative;">
           <img src="assets/img/instagram.png" alt="Instagram highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
           <div style="margin-top:56px;text-align:center;">
@@ -317,8 +208,8 @@
     <!-- BLOG PREVIEW -->
     <section class="section blog" id="blog">
       <h2>From the blog</h2>
-      <div class="posts">
-        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
+  <div class="posts">
+  <article class="post-card">
           <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Why finding pickup games is hard (and how we fix it)</h3>
@@ -329,7 +220,7 @@
             </div>
           </div>
         </article>
-        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(44,252,92,0.10);">
+  <article class="post-card">
           <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Top parks for weekend runs in your city</h3>
@@ -341,7 +232,7 @@
           </div>
         </article>
         </article>
-        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
+  <article class="post-card">
           <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Safety & verification at Sports Hub</h3>
