@@ -1,15 +1,15 @@
   <!-- Thank You Modal -->
-  <div id="thankyou-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
-    <div style="max-width:480px;margin:80px auto;background:#231f1e;padding:36px 28px;border-radius:18px;color:#fff;box-shadow:0 2px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
-      <h2 style="color:#fc5c2c;font-size:2rem;margin-bottom:12px;">🎉 Thank You!</h2>
-      <p style="font-size:1.2rem;margin-bottom:18px;">You're officially on the Sports Hub waitlist.<br>We'll keep you posted when we launch in your city!</p>
-      <p style="font-size:1.1rem;color:#fc5c2c;margin-bottom:18px;">In the meantime, follow us on social for updates and sneak peeks.</p>
-      <div style="margin-bottom:18px;">
-        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">Instagram</a>
-        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">TikTok</a>
-        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">X</a>
+  <div id="thankyou-modal" class="modal-bg">
+    <div class="modal-card">
+      <h2 class="modal-title">🎉 Thank You!</h2>
+      <p class="modal-text">You're officially on the Sports Hub waitlist.<br>We'll keep you posted when we launch in your city!</p>
+      <p class="modal-highlight">In the meantime, follow us on social for updates and sneak peeks.</p>
+      <div class="modal-social">
+        <a href="#" class="modal-social-btn">Instagram</a>
+        <a href="#" class="modal-social-btn">TikTok</a>
+        <a href="#" class="modal-social-btn">X</a>
       </div>
-      <button id="close-thankyou" style="position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 12px;cursor:pointer;">Close</button>
+      <button id="close-thankyou" class="modal-close">Close</button>
     </div>
   </div>
 <!doctype html>
@@ -45,11 +45,11 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#" aria-label="Sports Hub Home">
-  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub logo with text 'Sports Hub'" id="brandLogo" loading="eager" style="height:80px;max-width:220px;width:auto;border-radius:8px;background:transparent;padding:0;display:block;object-fit:contain;margin:auto 0;">
-  <strong style="font-size:2.8rem;font-family:'Orbitron', 'Arial', sans-serif;font-weight:400;letter-spacing:2px;color:#fff;text-shadow:0 2px 16px rgba(35,31,30,0.22);margin-left:18px;">Sports Hub</strong>
+  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub logo with text 'Sports Hub'" id="brandLogo" loading="eager" class="logo-img">
+  <strong class="logo-title">Sports Hub</strong>
       </a>
       <nav class="links" aria-label="Primary">
-        <button id="nav-toggle" aria-label="Open menu" style="display:none;background:none;border:none;font-size:2rem;color:var(--accent);margin-right:12px;">
+        <button id="nav-toggle" aria-label="Open menu" class="nav-toggle">
           <span aria-hidden="true">☰</span>
         </button>
         <div id="nav-menu">
@@ -67,13 +67,13 @@
 <section class="hero" id="home">
   <div>
     <span class="badge" role="status">🚀 Coming Soon — Early Access Open</span>
-  <h1 style="font-size:2.2rem;line-height:1.1;margin:18px 0 0 0;letter-spacing:1px;">Find pickup games</h1>
-  <h1 style="font-size:2.2rem;line-height:1.1;margin:6px 0 10px 0;letter-spacing:1px;">near you — instantly.</h1>
+  <h1 class="hero-title">Find pickup games</h1>
+  <h1 class="hero-title">near you — instantly.</h1>
     <p class="sub">
       Sports Hub is a geo-powered sports community. Discover local runs at parks & gyms,
       host games, and share your highlights — for any sport!
     </p>
-    <a href="#signup" class="cta-btn" style="font-size:1.3rem;margin:18px 0 0 0;display:inline-block;box-shadow:0 2px 12px rgba(252,92,44,0.18);">Get Early Access</a>
+  <a href="#signup" class="cta-btn hero-cta">Get Early Access</a>
     <div aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;">
       <svg width="100%" height="100" viewBox="0 0 1200 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100px;">
         <path d="M0,60 Q600,120 1200,60" stroke="#fc5c2c" stroke-width="8" fill="none" opacity="0.12" />
@@ -82,12 +82,12 @@
 
     <!-- Sign-up card -->
     <div class="card" aria-labelledby="waitlist-title">
-      <h2 id="waitlist-title" style="margin:0 0 8px;font-size:18px">Get Early Access</h2>
-  <p class="sub" style="margin:0 0 12px">Join the waitlist and we’ll email you when we launch in your city!</p>
+    <h2 id="waitlist-title" class="card-title">Get Early Access</h2>
+  <p class="sub card-sub">Join the waitlist and we’ll email you when we launch in your city!</p>
 
       <!-- Email signup form -->
   <form id="waitlist-form" class="waitlist-form" action="https://script.google.com/macros/s/AKfycbzXXGO4y68VXFSBEhPhlq-cLWkDJ6cJApy-46jpH2jUg1-XTU_e6yj0xqPgcCre2ifeEYA/exec" method="POST" novalidate>
-        <div class="waitlist" style="margin-top:0">
+  <div class="waitlist">
           <label for="waitlist-email" class="visually-hidden">Email</label>
           <input id="waitlist-email" name="email" type="email" placeholder="you@email.com" required aria-required="true" />
           <button class="btn" type="submit">Join Waitlist</button>
@@ -108,22 +108,22 @@
   </div>
 
   <!-- Right-side visual -->
-    <div class="mock" aria-hidden="true" style="padding:0;min-height:350px;background:none;display:flex;align-items:flex-start;justify-content:center;margin-top:-32px;">
+  <div class="mock hero-mock" aria-hidden="true">
   <div id="hero-map" style="width:100%;height:450px;border-radius:16px;"></div>
       </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="section" id="testimonials">
-  <h2 style="margin:6px 0 10px">What players are saying</h2>
+  <h2 class="section-title">What players are saying</h2>
   <div class="features">
-  <blockquote class="feature" style="color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+  <blockquote class="feature testimonial-block">
       “I never thought I'd find a pickup basketball game so close to home. The app makes it super easy to join in!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Jordan, Raleigh</span>
     </blockquote>
-  <blockquote class="feature" style="color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+  <blockquote class="feature testimonial-block">
       “I’ve connected with a bunch of new players and now have a regular soccer crew every Saturday. Highly recommend!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Taylor, Durham</span>
     </blockquote>
-  <blockquote class="feature" style="color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+  <blockquote class="feature testimonial-block">
       “Getting alerts for games in Cary means I never miss out. The community is super welcoming and fun!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Chris, Cary</span>
     </blockquote>
   </div>
@@ -131,7 +131,7 @@
 
     <!-- FEATURES -->
     <section class="section" id="features">
-      <h2 style="margin:6px 0 10px">What you can do</h2>
+  <h2 class="section-title">What you can do</h2>
   <div class="features">
   <article class="feature">
           <h3>📍 Geo game discovery</h3>
@@ -162,7 +162,7 @@
 
     <!-- HOW IT WORKS -->
     <section class="section" id="how">
-      <h2 style="margin:6px 0 10px">How it works</h2>
+  <h2 class="section-title">How it works</h2>
   <div class="how">
         <div class="step"><div class="num">1</div><h4>Set your sport & area</h4><p class="sub">Pick basketball, soccer, pickleball and more; set distance & skill.</p></div>
         <div class="step"><div class="num">2</div><h4>Discover games</h4><p class="sub">Browse live maps and filters to find runs that match your schedule.</p></div>
@@ -173,7 +173,7 @@
 
     <!-- SOCIAL FEED PREVIEW -->
     <section class="section" id="feed">
-      <h2 style="margin:6px 0 10px">Community feed (preview)</h2>
+  <h2 class="section-title">Community feed (preview)</h2>
   <div class="feed">
         <div class="post" style="background:#181824;box-shadow:0 2px 12px rgba(44,92,252,0.08);position:relative;">
           <img src="assets/img/instagram.png" alt="Instagram highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
