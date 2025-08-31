@@ -1,15 +1,15 @@
   <!-- Thank You Modal -->
-  <div id="thankyou-modal" class="modal-bg">
-    <div class="modal-card">
-      <h2 class="modal-title">🎉 Thank You!</h2>
-      <p class="modal-text">You're officially on the Sports Hub waitlist.<br>We'll keep you posted when we launch in your city!</p>
-      <p class="modal-highlight">In the meantime, follow us on social for updates and sneak peeks.</p>
-      <div class="modal-social">
-        <a href="#" class="modal-social-btn">Instagram</a>
-        <a href="#" class="modal-social-btn">TikTok</a>
-        <a href="#" class="modal-social-btn">X</a>
+  <div id="thankyou-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
+    <div style="max-width:480px;margin:80px auto;background:#231f1e;padding:36px 28px;border-radius:18px;color:#fff;box-shadow:0 2px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
+      <h2 style="color:#fc5c2c;font-size:2rem;margin-bottom:12px;">🎉 Thank You!</h2>
+      <p style="font-size:1.2rem;margin-bottom:18px;">You're officially on the Sports Hub waitlist.<br>We'll keep you posted when we launch in your city!</p>
+      <p style="font-size:1.1rem;color:#fc5c2c;margin-bottom:18px;">In the meantime, follow us on social for updates and sneak peeks.</p>
+      <div style="margin-bottom:18px;">
+        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">Instagram</a>
+        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">TikTok</a>
+        <a href="#" style="color:#fff;background:#fc5c2c;padding:8px 16px;border-radius:8px;margin:0 6px;text-decoration:none;">X</a>
       </div>
-      <button id="close-thankyou" class="modal-close">Close</button>
+      <button id="close-thankyou" style="position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 12px;cursor:pointer;">Close</button>
     </div>
   </div>
 <!doctype html>
@@ -37,19 +37,124 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&family=Orbitron:wght@400&display=swap" rel="stylesheet">
   <style>
+    :root{
+  --bg:#231f1e;
+  --panel:#231f1e;
+  --accent:#fc5c2c;
+  --accent-2:#fc5c2c;
+  --text:#ffffff;
+  --muted:#b9bcc6;
+  --line:#3a3533;
+  --danger:#fc5c2c;
+  --success:#38e1a8;
+  --base-font-size: 1rem;
+  --heading-size: clamp(2rem, 5vw, 3.5rem);
+  --section-padding: clamp(18px, 5vw, 48px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+          margin:0;
+          font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+          background: var(--bg);
+          color:var(--text);
+          font-size:var(--base-font-size);
+          line-height:1.5;
+        }
+    a{color:var(--accent);text-decoration:none}
+  .container{max-width:1120px;margin:0 auto;padding:0 20px}
 
+  header {position:sticky;top:0;z-index:50;background:rgba(35,31,30,.98);backdrop-filter:blur(8px);}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--accent)}
+    .brand img{height:36px;width:auto;border-radius:6px;display:block}
+    .brand strong{font-family:Poppins,Inter,sans-serif;letter-spacing:.2px}
+  .links a{margin-left:18px;color:var(--text);text-shadow:0 1px 6px rgba(35,31,30,0.18);margin-top:32px;}
+.links a:not(.cta-btn){margin-top:24px;}
+  .links a:hover{color:var(--accent)}
+  .cta-btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
+.links .cta-btn{margin-top:16px;}
 
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:56px 0}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,60,0,.1);border:1px solid rgba(255,60,0,.35);color:var(--accent);padding:8px 12px;border-radius:999px;font-size:14px}
+    h1{font-family:Poppins,Inter,sans-serif;font-size:var(--heading-size);line-height:1.1;margin:1em 0 .5em}
+    .sub{font-size:18px;color:var(--muted);max-width:60ch}
+  .card{background:rgba(35,31,30,.96);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .waitlist{display:flex;gap:10px;margin-top:14px}
+    .waitlist input[type=email]{flex:1;padding:14px 16px;border-radius:10px;border:1px solid #2a2a32;background:#0c0c12;color:var(--text)}
+  .btn{padding:14px 16px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
+  .btn:hover{filter:brightness(1.08);background:var(--accent);}
+    .helper{font-size:12px;color:var(--muted);margin-top:8px}
+
+    .mock{aspect-ratio:16/10;background:linear-gradient(180deg, rgba(255,106,51,.18), rgba(255,60,0,.12));border:1px dashed var(--line);border-radius:16px;display:grid;place-items:center;color:var(--muted)}
+
+    .section{padding:var(--section-padding) 0}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:8px 0}
+    .feature{padding:18px;border-radius:14px;background:#111114;border:1px solid var(--line)}
+    .feature h3{margin:8px 0 6px}
+    .feature p{margin:0;color:var(--muted)}
+
+    .how{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{background:#111114;border:1px solid var(--line);border-radius:14px;padding:16px}
+    .num{width:32px;height:32px;display:grid;place-items:center;border-radius:999px;background:var(--accent);color:#111;font-weight:800}
+
+    .feed{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .post{aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#0b0b11;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted)}
+
+    .map-embed{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+
+    .store-badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .store-badges img{height:44px;width:auto;filter:grayscale(15%)}
+
+    .blog{margin:16px 0}
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .post-card{background:#111114;border:1px solid var(--line);border-radius:14px;padding:16px}
+    .post-card h3{margin:0 0 6px}
+    .post-card p{margin:0;color:var(--muted)}
+
+    .faq{display:grid;grid-template-columns:1fr;gap:10px}
+    .faq details{background:#111114;border:1px solid var(--line);border-radius:10px;padding:12px}
+    .faq summary{cursor:pointer;font-weight:600}
+
+    footer{margin-top:36px;padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+    .social a{margin-left:10px;color:var(--muted)}
+    .social a:hover{color:var(--text)}
+
+    /* Cookie banner */
+    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:#111114;border:1px solid var(--line);border-radius:12px;padding:14px;display:none;z-index:99}
+    .cookie p{margin:0 0 8px;color:var(--muted)}
+    .cookie .row{display:flex;gap:8px;justify-content:flex-end}
+    .cookie button{padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:#0e0e12;color:var(--text)}
+    .cookie .accept{background:var(--accent);color:#111;border:none}
+
+    @media (max-width: 960px){
+  .hero{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr 1fr}
+  .how{grid-template-columns:1fr 1fr}
+  .feed{grid-template-columns:1fr 1fr}
+  .posts{grid-template-columns:1fr 1fr}
+  h1{font-size:clamp(1.5rem, 7vw, 2.5rem);}
+  .section{padding:clamp(12px, 4vw, 32px) 0;}
+    }
+    @media (max-width: 560px){
+  .features,.how,.feed,.posts{grid-template-columns:1fr}
+  .waitlist{flex-direction:column}
+  .btn{width:100%}
+  h1{font-size:clamp(1.2rem, 8vw, 2rem);}
+  .section{padding:clamp(8px, 3vw, 18px) 0;}
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
       <a class="brand" href="#" aria-label="Sports Hub Home">
-  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub logo with text 'Sports Hub'" id="brandLogo" loading="eager" class="logo-img">
-  <strong class="logo-title">Sports Hub</strong>
+  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub logo with text 'Sports Hub'" id="brandLogo" loading="eager" style="height:80px;max-width:220px;width:auto;border-radius:8px;background:transparent;padding:0;display:block;object-fit:contain;margin:auto 0;">
+  <strong style="font-size:2.8rem;font-family:'Orbitron', 'Arial', sans-serif;font-weight:400;letter-spacing:2px;color:#fff;text-shadow:0 2px 16px rgba(35,31,30,0.22);margin-left:18px;">Sports Hub</strong>
       </a>
       <nav class="links" aria-label="Primary">
-        <button id="nav-toggle" aria-label="Open menu" class="nav-toggle">
+        <button id="nav-toggle" aria-label="Open menu" style="display:none;background:none;border:none;font-size:2rem;color:var(--accent);margin-right:12px;">
           <span aria-hidden="true">☰</span>
         </button>
         <div id="nav-menu">
@@ -67,13 +172,13 @@
 <section class="hero" id="home">
   <div>
     <span class="badge" role="status">🚀 Coming Soon — Early Access Open</span>
-  <h1 class="hero-title">Find pickup games</h1>
-  <h1 class="hero-title">near you — instantly.</h1>
+  <h1 style="font-size:2.2rem;line-height:1.1;margin:18px 0 0 0;letter-spacing:1px;">Find pickup games</h1>
+  <h1 style="font-size:2.2rem;line-height:1.1;margin:6px 0 10px 0;letter-spacing:1px;">near you — instantly.</h1>
     <p class="sub">
       Sports Hub is a geo-powered sports community. Discover local runs at parks & gyms,
       host games, and share your highlights — for any sport!
     </p>
-  <a href="#signup" class="cta-btn hero-cta">Get Early Access</a>
+    <a href="#signup" class="cta-btn" style="font-size:1.3rem;margin:18px 0 0 0;display:inline-block;box-shadow:0 2px 12px rgba(252,92,44,0.18);">Get Early Access</a>
     <div aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;">
       <svg width="100%" height="100" viewBox="0 0 1200 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100px;">
         <path d="M0,60 Q600,120 1200,60" stroke="#fc5c2c" stroke-width="8" fill="none" opacity="0.12" />
@@ -82,12 +187,12 @@
 
     <!-- Sign-up card -->
     <div class="card" aria-labelledby="waitlist-title">
-    <h2 id="waitlist-title" class="card-title">Get Early Access</h2>
-  <p class="sub card-sub">Join the waitlist and we’ll email you when we launch in your city!</p>
+      <h2 id="waitlist-title" style="margin:0 0 8px;font-size:18px">Get Early Access</h2>
+  <p class="sub" style="margin:0 0 12px">Join the waitlist and we’ll email you when we launch in your city!</p>
 
       <!-- Email signup form -->
   <form id="waitlist-form" class="waitlist-form" action="https://script.google.com/macros/s/AKfycbzXXGO4y68VXFSBEhPhlq-cLWkDJ6cJApy-46jpH2jUg1-XTU_e6yj0xqPgcCre2ifeEYA/exec" method="POST" novalidate>
-  <div class="waitlist">
+        <div class="waitlist" style="margin-top:0">
           <label for="waitlist-email" class="visually-hidden">Email</label>
           <input id="waitlist-email" name="email" type="email" placeholder="you@email.com" required aria-required="true" />
           <button class="btn" type="submit">Join Waitlist</button>
@@ -108,22 +213,22 @@
   </div>
 
   <!-- Right-side visual -->
-  <div class="mock hero-mock" aria-hidden="true">
+    <div class="mock" aria-hidden="true" style="padding:0;min-height:350px;background:none;display:flex;align-items:flex-start;justify-content:center;margin-top:-32px;">
   <div id="hero-map" style="width:100%;height:450px;border-radius:16px;"></div>
       </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section" id="testimonials">
-  <h2 class="section-title">What players are saying</h2>
-  <div class="features">
-  <blockquote class="feature testimonial-block">
+<section class="section" id="testimonials" style="background:rgba(35,31,30,0.98);margin-top:-24px;">
+  <h2 style="margin:6px 0 10px">What players are saying</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
+    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       “I never thought I'd find a pickup basketball game so close to home. The app makes it super easy to join in!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Jordan, Raleigh</span>
     </blockquote>
-  <blockquote class="feature testimonial-block">
+    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       “I’ve connected with a bunch of new players and now have a regular soccer crew every Saturday. Highly recommend!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Taylor, Durham</span>
     </blockquote>
-  <blockquote class="feature testimonial-block">
+    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
       “Getting alerts for games in Cary means I never miss out. The community is super welcoming and fun!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Chris, Cary</span>
     </blockquote>
   </div>
@@ -131,9 +236,9 @@
 
     <!-- FEATURES -->
     <section class="section" id="features">
-  <h2 class="section-title">What you can do</h2>
-  <div class="features">
-  <article class="feature">
+      <h2 style="margin:6px 0 10px">What you can do</h2>
+      <div class="features">
+        <article class="feature">
           <h3>📍 Geo game discovery</h3>
           <p>See nearby pickup games by sport, time, and skill level. Tap to join.</p>
         </article>
@@ -162,8 +267,8 @@
 
     <!-- HOW IT WORKS -->
     <section class="section" id="how">
-  <h2 class="section-title">How it works</h2>
-  <div class="how">
+      <h2 style="margin:6px 0 10px">How it works</h2>
+      <div class="how">
         <div class="step"><div class="num">1</div><h4>Set your sport & area</h4><p class="sub">Pick basketball, soccer, pickleball and more; set distance & skill.</p></div>
         <div class="step"><div class="num">2</div><h4>Discover games</h4><p class="sub">Browse live maps and filters to find runs that match your schedule.</p></div>
         <div class="step"><div class="num">3</div><h4>Join or host</h4><p class="sub">RSVP in a tap or create your own game with caps, rules and chat.</p></div>
@@ -173,8 +278,8 @@
 
     <!-- SOCIAL FEED PREVIEW -->
     <section class="section" id="feed">
-  <h2 class="section-title">Community feed (preview)</h2>
-  <div class="feed">
+      <h2 style="margin:6px 0 10px">Community feed (preview)</h2>
+      <div class="feed">
         <div class="post" style="background:#181824;box-shadow:0 2px 12px rgba(44,92,252,0.08);position:relative;">
           <img src="assets/img/instagram.png" alt="Instagram highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
           <div style="margin-top:56px;text-align:center;">
@@ -208,8 +313,8 @@
     <!-- BLOG PREVIEW -->
     <section class="section blog" id="blog">
       <h2>From the blog</h2>
-  <div class="posts">
-  <article class="post-card">
+      <div class="posts">
+        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
           <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Why finding pickup games is hard (and how we fix it)</h3>
@@ -220,7 +325,7 @@
             </div>
           </div>
         </article>
-  <article class="post-card">
+        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(44,252,92,0.10);">
           <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Top parks for weekend runs in your city</h3>
@@ -232,7 +337,7 @@
           </div>
         </article>
         </article>
-  <article class="post-card">
+        <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
           <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Safety & verification at Sports Hub</h3>
