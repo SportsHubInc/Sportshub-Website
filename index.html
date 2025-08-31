@@ -365,17 +365,64 @@
 
     <!-- CTA -->
     <section class="section" id="signup">
-      <div class="card" style="text-align:center">
-        <h2>Be first on the court.</h2>
-        <p class="sub" style="margin:0 auto 16px">Join players getting early access when we launch in your city.</p>
-        <form class="waitlist" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST" novalidate>
-          <label for="signup-email" class="visually-hidden">Email</label>
-          <input id="signup-email" name="email" type="email" placeholder="you@email.com" required />
-          <button class="btn" type="submit">Join waitlist</button>
-        </form>
+  <div class="card" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:stretch;box-shadow:0 2px 12px rgba(252,92,44,0.12);background:linear-gradient(120deg,#fc5c2c 0%,#231f1e 100%);color:#fff;position:relative;overflow:hidden;padding:0;width:100%;max-width:none;margin:0;min-height:120px;">
+  <div style="flex:1 1 320px;padding:18px 24px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:rgba(35,31,30,0.92);min-width:320px;max-width:50%;">
+          <h2 style="font-size:2rem;font-weight:800;letter-spacing:1px;margin-bottom:10px;line-height:1.1;">Be First On The Court</h2>
+          <div style="font-size:1.15rem;margin-bottom:14px;opacity:0.95;">Claim your spot, connect with local athletes, and unlock exclusive rewards. <span style="color:#fc5c2c;font-weight:700;">Your game starts here!</span></div>
+          <div style="margin-bottom:18px;">
+            <a href="#" id="limited-link" style="background:#fff;color:#fc5c2c;font-weight:700;padding:6px 16px;border-radius:999px;font-size:1rem;box-shadow:0 2px 8px rgba(252,92,44,0.12);margin-right:8px;text-decoration:none;cursor:pointer;">Limited Spots</a>
+            <a href="#" id="founders-link" style="background:#fc5c2c;color:#fff;font-weight:700;padding:6px 16px;border-radius:999px;font-size:1rem;box-shadow:0 2px 8px rgba(252,92,44,0.12);text-decoration:none;cursor:pointer;">Founders Perks</a>
+          </div>
+          <div style="width:100%;height:8px;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:10px;">
+            <div style="width:38%;height:100%;background:linear-gradient(90deg,#fc5c2c,#ff7e5f);border-radius:8px;"></div>
+          </div>
+          <div style="font-size:0.98rem;opacity:0.8;">Only a few spots left for early access!</div>
+        </div>
+  <div style="flex:1 1 320px;padding:64px 24px 0 24px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background:rgba(252,92,44,0.08);min-width:320px;max-width:50%;height:100%;">
+  <form class="waitlist" action="https://script.google.com/macros/s/AKfycbyifxP14ranqAiFU1XXiofrF8YrkduexLYsjiq8MDzH_2w5yXLGWiS0U_HfSixyhcj1/exec" method="POST" novalidate style="width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+            <label for="signup-email" class="visually-hidden">Email</label>
+            <input id="signup-email" name="email" type="email" placeholder="Email for early access" required style="width:340px;max-width:90vw;padding:8px 18px;font-size:1rem;font-weight:500;border-radius:8px;border:2px solid #fc5c2c;background:#fff;color:#fc5c2c;margin-bottom:4px;box-shadow:0 2px 8px rgba(252,92,44,0.10);display:block;text-align:center;" />
+            <button class="btn" type="submit" style="width:120px;padding:8px 0;font-size:0.95rem;background:linear-gradient(120deg,#fc5c2c,#ff7e5f);color:#fff;font-weight:600;border-radius:8px;box-shadow:0 2px 8px rgba(252,92,44,0.12);margin-top:2px;display:block;">Join</button>
+          </form>
+          <p style="font-size:0.95rem;color:#fff;margin-top:-2px;opacity:0.85;">No spam. Unsubscribe anytime.</p>
+        </div>
       </div>
     </section>
   </main>
+  <!-- Limited Spots Modal -->
+  <div id="limited-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
+  <div style="max-width:480px;margin:60px auto;background:linear-gradient(135deg,#fc5c2c 0%,#231f1e 100%);padding:36px 28px 28px 28px;border-radius:22px;color:#fff;box-shadow:0 4px 32px rgba(252,92,44,0.22);position:relative;text-align:center;overflow:hidden;">
+      <div style="font-size:2.2rem;margin-bottom:8px;">⏳</div>
+  <h2 style="color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;letter-spacing:1px;text-shadow:0 2px 12px #fc5c2c;">Limited Spots</h2>
+  <p style="font-size:1.15rem;margin-bottom:18px;opacity:0.92;">Early access is reserved for a select group of founding members. Once spots fill up, you’ll have to wait for the next round!<br><br><strong>Why limited?</strong> We want to build a tight-knit, active community from the start. This helps us ensure quality games, real connections, and a great experience for everyone.</p>
+  <ul style="list-style:none;padding:0;margin:0 0 18px 0;text-align:left;max-width:340px;margin-left:auto;margin-right:auto;">
+        <li style="margin-bottom:8px;display:flex;align-items:center;"><span style="font-size:1.2rem;margin-right:8px;">✅</span> <span>Priority invites for early signups</span></li>
+        <li style="margin-bottom:8px;display:flex;align-items:center;"><span style="font-size:1.2rem;margin-right:8px;">🤝</span> <span>Direct input into platform features</span></li>
+  <li style="margin-bottom:8px;display:flex;align-items:center;"><span style="font-size:1.2rem;margin-right:8px;">🧪</span> <span>Be part of our early beta testing group</span></li>
+      </ul>
+  <div style="margin-bottom:18px;font-size:1.05rem;color:#fff;opacity:0.85;">Don’t miss your chance to shape Sports Hub from day one!</div>
+  <button id="close-limited" style="position:absolute;top:18px;right:18px;background:linear-gradient(135deg,#fc5c2c,#ff7e5f);color:#fff;border:none;border-radius:12px;padding:8px 18px;font-size:1rem;font-weight:700;box-shadow:0 2px 8px rgba(252,92,44,0.18);cursor:pointer;">Close</button>
+  <div style="position:absolute;bottom:-18px;left:-18px;opacity:0.10;pointer-events:none;font-size:7rem;">⏳</div>
+    </div>
+  </div>
+  <!-- Founders Perks Modal -->
+  <div id="founders-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.92);z-index:9999;overflow:auto;">
+    <div style="max-width:480px;margin:60px auto;background:linear-gradient(135deg,#fc5c2c 0%,#231f1e 100%);padding:36px 28px 28px 28px;border-radius:22px;color:#fff;box-shadow:0 4px 32px rgba(252,92,44,0.22);position:relative;text-align:center;overflow:hidden;">
+      <div style="font-size:2.6rem;margin-bottom:10px;">🎉</div>
+      <h2 style="color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;letter-spacing:1px;text-shadow:0 2px 12px #fc5c2c;">Founders Perks</h2>
+      <p style="font-size:1.15rem;margin-bottom:18px;opacity:0.92;">Early supporters get exclusive rewards and recognition. Here’s what you unlock:</p>
+      <ul style="list-style:none;padding:0;margin:0 0 18px 0;text-align:left;max-width:340px;margin-left:auto;margin-right:auto;">
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3rem;margin-right:10px;">⭐</span> <span>Priority access to new features</span></li>
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3rem;margin-right:10px;">🏅</span> <span>Founders badge on your profile</span></li>
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3rem;margin-right:10px;">🎟️</span> <span>Special invites to launch events</span></li>
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3rem;margin-right:10px;">🗳️</span> <span>Early access to community voting</span></li>
+        <li style="margin-bottom:10px;display:flex;align-items:center;"><span style="font-size:1.3rem;margin-right:10px;">🎁</span> <span>Surprise perks as we grow!</span></li>
+      </ul>
+      <div style="margin-bottom:18px;font-size:1.05rem;color:#fff;opacity:0.85;">Thank you for helping build the future of pickup sports!</div>
+      <button id="close-founders" style="position:absolute;top:18px;right:18px;background:linear-gradient(135deg,#fc5c2c,#ff7e5f);color:#fff;border:none;border-radius:12px;padding:8px 18px;font-size:1rem;font-weight:700;box-shadow:0 2px 8px rgba(252,92,44,0.18);cursor:pointer;">Close</button>
+      <div style="position:absolute;bottom:-18px;left:-18px;opacity:0.10;pointer-events:none;font-size:7rem;">🏀</div>
+    </div>
+  </div>
 
   <footer>
     <div class="container foot">
@@ -423,6 +470,26 @@
   </div>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA21zV6nO1weSzc25y8NJusc3O2bCjj8nM"></script>
+  <script>
+    // Limited Spots modal logic
+    document.getElementById('limited-link').onclick = function(e){
+      e.preventDefault();
+      document.getElementById('limited-modal').style.display = 'block';
+    };
+    document.getElementById('close-limited').onclick = function(){
+      document.getElementById('limited-modal').style.display = 'none';
+    };
+  </script>
+  <script>
+    // Founders Perks modal logic
+    document.getElementById('founders-link').onclick = function(e){
+      e.preventDefault();
+      document.getElementById('founders-modal').style.display = 'block';
+    };
+    document.getElementById('close-founders').onclick = function(){
+      document.getElementById('founders-modal').style.display = 'none';
+    };
+  </script>
   <script>
     // Privacy & Terms modal logic
     document.getElementById('privacy-link').onclick = function(e){
