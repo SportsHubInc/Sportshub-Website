@@ -1,4 +1,27 @@
-document.getElementById("signup-form").addEventListener("submit", function(event) {
+document.getElementById("signup-form").addEventListener("submit", async function(event) {
   event.preventDefault();
-  alert("✅ Thanks for signing up! You'll hear from us soon.");
+  const emailInput = document.getElementById("signup-email");
+  if (!emailInput.checkValidity()) {
+    emailInput.style.borderColor = "#fc5c2c";
+    alert("Please enter a valid email address.");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("email", emailInput.value);
+
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbyifxP14ranqAiFU1XXiofrF8YrkduexLYsjiq8MDzH_2w5yXLGWiS0U_HfSixyhcj1/exec", {
+      method: "POST",
+      body: formData
+    });
+    const text = await response.text();
+    if (response.ok && text.includes("Success")) {
+      document.getElementById("signup-form").reset();
+      alert("✅ Thanks for signing up! You'll hear from us soon.");
+    } else {
+      alert("Could not submit. Try again later.");
+    }
+  } catch (error) {
+    alert("Network error. Please try again.");
+  }
 });
