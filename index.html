@@ -15,6 +15,30 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Schema.org markup for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sports Hub",
+    "url": "https://example.com",
+    "logo": "https://example.com/assets/img/Sports%20Hub%20LOGO_A6.png",
+    "sameAs": [
+      "https://instagram.com/thesportshubinc",
+      "https://tiktok.com/@sportshubinc",
+      "https://twitter.com/SportsHubInc25"
+    ],
+    "description": "Sports Hub helps you find and join local pickup games with real-time maps and a social feed for any sport! Join the waitlist for early access."
+  }
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sports Hub — Play Anywhere. Connect Everywhere.</title>
@@ -82,8 +106,13 @@
   .card{background:rgba(35,31,30,.96);border:1px solid var(--line);border-radius:16px;padding:18px}
     .waitlist{display:flex;gap:10px;margin-top:14px}
     .waitlist input[type=email]{flex:1;padding:14px 16px;border-radius:10px;border:1px solid #2a2a32;background:#0c0c12;color:var(--text)}
-  .btn{padding:14px 16px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(252,92,44,0.18);}
-  .btn:hover{filter:brightness(1.08);background:var(--accent);}
+    .btn{padding:14px 16px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(252,92,44,0.18);transition:transform 0.18s cubic-bezier(.4,2,.3,1),box-shadow 0.18s;}
+    .btn:hover{filter:brightness(1.08);background:var(--accent);transform:scale(1.04);box-shadow:0 4px 16px rgba(252,92,44,0.22);}
+    .card{animation:fadeInCard 0.7s cubic-bezier(.4,2,.3,1);}
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .helper{font-size:12px;color:var(--muted);margin-top:8px}
 
     .mock{aspect-ratio:16/10;background:linear-gradient(180deg, rgba(255,106,51,.18), rgba(255,60,0,.12));border:1px dashed var(--line);border-radius:16px;display:grid;place-items:center;color:var(--muted)}
@@ -129,20 +158,26 @@
     .cookie .accept{background:var(--accent);color:#111;border:none}
 
     @media (max-width: 960px){
-  .hero{grid-template-columns:1fr}
-  .features{grid-template-columns:1fr 1fr}
-  .how{grid-template-columns:1fr 1fr}
-  .feed{grid-template-columns:1fr 1fr}
-  .posts{grid-template-columns:1fr 1fr}
-  h1{font-size:clamp(1.5rem, 7vw, 2.5rem);}
-  .section{padding:clamp(12px, 4vw, 32px) 0;}
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr 1fr}
+      .how{grid-template-columns:1fr 1fr}
+      .feed{grid-template-columns:1fr 1fr}
+      .posts{grid-template-columns:1fr 1fr}
+      h1{font-size:clamp(1.5rem, 7vw, 2.5rem);}
+      .section{padding:clamp(12px, 4vw, 32px) 0;}
+      .card{padding:10px;}
+      .card > div{min-width:100%;max-width:100%;padding:18px 8px;}
+      .waitlist input[type=email], .waitlist .btn{width:100%;max-width:100vw;}
     }
     @media (max-width: 560px){
-  .features,.how,.feed,.posts{grid-template-columns:1fr}
-  .waitlist{flex-direction:column}
-  .btn{width:100%}
-  h1{font-size:clamp(1.2rem, 8vw, 2rem);}
-  .section{padding:clamp(8px, 3vw, 18px) 0;}
+      .features,.how,.feed,.posts{grid-template-columns:1fr}
+      .waitlist{flex-direction:column}
+      .btn{width:100%}
+      h1{font-size:clamp(1.2rem, 8vw, 2rem);}
+      .section{padding:clamp(8px, 3vw, 18px) 0;}
+      .card{padding:6px;}
+      .card > div{padding:12px 4px;}
+      .waitlist input[type=email], .waitlist .btn{width:100%;max-width:100vw;}
     }
   </style>
 </head>
@@ -168,7 +203,6 @@
   </header>
 
   <main class="container">
-   <!-- HERO -->
 <section class="hero" id="home">
   <div>
     <span class="badge" role="status">🚀 Coming Soon — Early Access Open</span>
@@ -184,6 +218,7 @@
         <path d="M0,60 Q600,120 1200,60" stroke="#fc5c2c" stroke-width="8" fill="none" opacity="0.12" />
       </svg>
     </div>
+  <div id="location-welcome" style="margin:12px 0 0 0;font-size:1.1rem;color:#fc5c2c;font-weight:600;"></div>
 
     <!-- Sign-up card -->
     <div class="card" aria-labelledby="waitlist-title">
@@ -194,10 +229,11 @@
   <form id="waitlist-form" class="waitlist-form" action="https://script.google.com/macros/s/AKfycbzXXGO4y68VXFSBEhPhlq-cLWkDJ6cJApy-46jpH2jUg1-XTU_e6yj0xqPgcCre2ifeEYA/exec" method="POST" novalidate>
         <div class="waitlist" style="margin-top:0">
           <label for="waitlist-email" class="visually-hidden">Email</label>
-          <input id="waitlist-email" name="email" type="email" placeholder="you@email.com" required aria-required="true" />
+          <input id="waitlist-email" name="email" type="email" placeholder="you@email.com" required aria-required="true" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address." />
           <button class="btn" type="submit">Join Waitlist</button>
         </div>
         <p class="helper">No spam. Unsubscribe anytime.</p>
+        <!-- Security best practice: Make sure your site is served over HTTPS for user data protection. -->
       </form>
 
       <!-- App badges (coming soon) -->
@@ -214,23 +250,32 @@
 
   <!-- Right-side visual -->
     <div class="mock" aria-hidden="true" style="padding:0;min-height:350px;background:none;display:flex;align-items:flex-start;justify-content:center;margin-top:-32px;">
-  <div id="hero-map" style="width:100%;height:450px;border-radius:16px;"></div>
+  <div id="hero-map" style="width:100%;height:450px;border-radius:16px;" aria-label="Map showing local pickup games"></div>
       </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="section" id="testimonials" style="background:rgba(35,31,30,0.98);margin-top:-24px;">
-  <h2 style="margin:6px 0 10px">What players are saying</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
-    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-      “I never thought I'd find a pickup basketball game so close to home. The app makes it super easy to join in!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Jordan, Raleigh</span>
-    </blockquote>
-    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-      “I’ve connected with a bunch of new players and now have a regular soccer crew every Saturday. Highly recommend!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Taylor, Durham</span>
-    </blockquote>
-    <blockquote style="background:#231f1e;border-radius:12px;padding:18px;color:#fff;font-size:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-      “Getting alerts for games in Cary means I never miss out. The community is super welcoming and fun!”<br><span style="color:#fc5c2c;font-size:0.95rem;">— Chris, Cary</span>
-    </blockquote>
+  <h2 style="margin:6px 0 10px;font-size:2rem;font-weight:800;letter-spacing:1px;text-align:center;">What players are saying!</h2>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:28px;">
+  <div style="background:#000;border-radius:18px;padding:32px 28px;box-shadow:0 4px 24px rgba(252,92,44,0.10);max-width:340px;min-width:260px;display:flex;flex-direction:column;align-items:center;position:relative;">
+      <img src="assets/img/Sports Hub LOGO_A6.png" alt="Jordan avatar" style="width:54px;height:54px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(252,92,44,0.18);margin-bottom:12px;" />
+      <div style="font-size:1.2rem;font-weight:600;color:#fff;text-align:center;margin-bottom:10px;">“I never thought I'd find a pickup basketball game so close to home. The app makes it super easy to join in!”</div>
+      <span style="color:#fc5c2c;font-size:1rem;font-weight:700;">— Jordan, Raleigh</span>
+      <span style="position:absolute;top:18px;right:18px;font-size:1.5rem;opacity:0.12;">🏀</span>
+    </div>
+  <div style="background:#000;border-radius:18px;padding:32px 28px;box-shadow:0 4px 24px rgba(252,92,44,0.10);max-width:340px;min-width:260px;display:flex;flex-direction:column;align-items:center;position:relative;">
+  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Taylor avatar" style="width:54px;height:54px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(252,92,44,0.18);margin-bottom:12px;" />
+      <div style="font-size:1.2rem;font-weight:600;color:#fff;text-align:center;margin-bottom:10px;">“I’ve connected with alot of new players and now have a regular pickleball crew every Saturday. Highly recommend!”</div>
+      <span style="color:#fc5c2c;font-size:1rem;font-weight:700;">— Taylor, Durham</span>
+      <span style="position:absolute;top:18px;right:18px;font-size:1.5rem;opacity:0.12;">⚽</span>
+    </div>
+  <div style="background:#000;border-radius:18px;padding:32px 28px;box-shadow:0 4px 24px rgba(252,92,44,0.10);max-width:340px;min-width:260px;display:flex;flex-direction:column;align-items:center;position:relative;">
+  <img src="assets/img/Sports Hub LOGO_A6.png" alt="Alex avatar" style="width:54px;height:54px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(252,92,44,0.18);margin-bottom:12px;" />
+  <div style="font-size:1.2rem;font-weight:600;color:#fff;text-align:center;margin-bottom:10px;">“Sports Hub has cut down on the time I spend driving to different courts. Now I know exactly where the action is!”</div>
+  <span style="color:#fc5c2c;font-size:1rem;font-weight:700;">— Alex, Chapel Hill</span>
+  <span style="position:absolute;top:18px;right:18px;font-size:1.5rem;opacity:0.12;">�</span>
+    </div>
   </div>
 </section>
 
@@ -281,7 +326,7 @@
       <h2 style="margin:6px 0 10px">Community feed (preview)</h2>
       <div class="feed">
         <div class="post" style="background:#181824;box-shadow:0 2px 12px rgba(44,92,252,0.08);position:relative;">
-          <img src="assets/img/instagram.png" alt="Instagram highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+          <img src="assets/img/instagram.png" alt="Instagram logo for highlight post" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" width="38" height="38">
           <div style="margin-top:56px;text-align:center;">
             <span style="font-weight:700;color:#fc5c2c;">@theSportsHubinc</span><br>
             <span style="color:#fff;">Check out our latest IG highlight!</span>
@@ -289,7 +334,7 @@
           <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);opacity:0.85;"></div>
         </div>
         <div class="post" style="background:#1a1a2a;box-shadow:0 2px 12px rgba(44,252,92,0.08);position:relative;">
-          <img src="assets/img/Sports Hub LOGO_A6.png" alt="User avatar" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+          <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub user avatar" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" width="38" height="38">
           <div style="margin-top:56px;text-align:center;">
             <span style="font-weight:700;color:#fc5c2c;">Taylor (Durham)</span><br>
             <span style="color:#fff;">Scored 22 points at Lakewood Park 🏀</span>
@@ -298,7 +343,7 @@
           <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);opacity:0.85;"></div>
         </div>
         <div class="post" style="background:#23233a;box-shadow:0 2px 12px rgba(252,44,92,0.08);position:relative;">
-          <img src="assets/img/tiktok.png" alt="TikTok highlight" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+          <img src="assets/img/tiktok.png" alt="TikTok logo for highlight post" style="width:38px;height:38px;border-radius:50%;position:absolute;top:12px;left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" width="38" height="38">
           <div style="margin-top:56px;text-align:center;">
             <span style="font-weight:700;color:#fc5c2c;">@SportsHubinc</span><br>
             <span style="color:#fff;">Watch our viral TikTok: 'Epic game at Cary courts!'</span>
@@ -315,12 +360,12 @@
       <h2>From the blog</h2>
       <div class="posts">
         <article class="post-card" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#231f1e 70%,#fc5c2c 100%);box-shadow:0 2px 12px rgba(252,92,44,0.10);">
-          <img src="assets/img/Sports Hub LOGO_A6.png" alt="Blog cover" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;">
+          <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub blog cover image" style="width:100%;height:80px;object-fit:cover;opacity:0.18;position:absolute;top:0;left:0;" width="100%" height="80">
           <div style="position:relative;z-index:2;padding-top:60px;">
             <h3 style="margin-bottom:8px;color:#fff;">Why finding pickup games is hard (and how we fix it)</h3>
             <p style="color:#fff;">We map the local sports world so you can play more with less planning.</p>
             <div style="display:flex;align-items:center;margin-top:12px;">
-              <img src="assets/img/instagram.png" alt="Author avatar" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
+              <img src="assets/img/instagram.png" alt="Instagram avatar for blog author" style="width:28px;height:28px;border-radius:50%;margin-right:8px;" width="28" height="28">
               <span style="color:#fc5c2c;font-weight:700;">By Sports Hub Team</span>
             </div>
           </div>
@@ -331,7 +376,7 @@
             <h3 style="margin-bottom:8px;color:#fff;">Top parks for weekend runs in your city</h3>
             <p style="color:#fff;">Community-sourced spots for hoops, soccer, volleyball and more.</p>
             <div style="display:flex;align-items:center;margin-top:12px;">
-              <img src="assets/img/Sports Hub LOGO_A6.png" alt="Author avatar" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
+              <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub avatar for blog author" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
               <span style="color:#fc5c2c;font-weight:700;">By Sports Hub Team</span>
             </div>
           </div>
@@ -343,7 +388,7 @@
             <h3 style="margin-bottom:8px;color:#fff;">Safety & verification at Sports Hub</h3>
             <p style="color:#fff;">How we make pickup play more welcoming and trustworthy.</p>
             <div style="display:flex;align-items:center;margin-top:12px;">
-              <img src="assets/img/Sports Hub LOGO_A6.png" alt="Author avatar" style="width:28px;height:28px;border-radius:50%;margin-right:8px;">
+              <img src="assets/img/Sports Hub LOGO_A6.png" alt="Sports Hub avatar for blog author" style="width:28px;height:28px;border-radius:50%;margin-right:8px;" width="28" height="28">
               <span style="color:#fc5c2c;font-weight:700;">By Sports Hub Team</span>
             </div>
           </div>
@@ -365,7 +410,7 @@
 
     <!-- CTA -->
     <section class="section" id="signup">
-  <div class="card" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:stretch;box-shadow:0 2px 12px rgba(252,92,44,0.12);background:linear-gradient(120deg,#fc5c2c 0%,#231f1e 100%);color:#fff;position:relative;overflow:hidden;padding:0;width:100%;max-width:none;margin:0;min-height:120px;">
+  <div class="card" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:stretch;background:#231f1e;color:#fff;position:relative;overflow:hidden;padding:0;width:100%;max-width:none;margin:0;min-height:120px;border:0;box-shadow:none;">
   <div style="flex:1 1 320px;padding:18px 24px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:rgba(35,31,30,0.92);min-width:320px;max-width:50%;">
           <h2 style="font-size:2rem;font-weight:800;letter-spacing:1px;margin-bottom:10px;line-height:1.1;">Be First On The Court</h2>
           <div style="font-size:1.15rem;margin-bottom:14px;opacity:0.95;">Claim your spot, connect with local athletes, and unlock exclusive rewards. <span style="color:#fc5c2c;font-weight:700;">Your game starts here!</span></div>
@@ -378,11 +423,13 @@
           </div>
           <div style="font-size:0.98rem;opacity:0.8;">Only a few spots left for early access!</div>
         </div>
-  <div style="flex:1 1 320px;padding:64px 24px 0 24px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background:rgba(252,92,44,0.08);min-width:320px;max-width:50%;height:100%;">
-  <form class="waitlist" action="https://script.google.com/macros/s/AKfycbyifxP14ranqAiFU1XXiofrF8YrkduexLYsjiq8MDzH_2w5yXLGWiS0U_HfSixyhcj1/exec" method="POST" novalidate style="width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+  <div style="flex:1 1 320px;padding:64px 24px 0 24px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background:#231f1e;min-width:320px;max-width:50%;height:100%;">
+  <form class="waitlist" action="https://script.google.com/macros/s/AKfycbyifxP14ranqAiFU1XXiofrF8YrkduexLYsjiq8MDzH_2w5yXLGWiS0U_HfSixyhcj1/exec" method="POST" novalidate style="width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-top:38px;">
             <label for="signup-email" class="visually-hidden">Email</label>
-            <input id="signup-email" name="email" type="email" placeholder="Email for early access" required style="width:340px;max-width:90vw;padding:8px 18px;font-size:1rem;font-weight:500;border-radius:8px;border:2px solid #fc5c2c;background:#fff;color:#fc5c2c;margin-bottom:4px;box-shadow:0 2px 8px rgba(252,92,44,0.10);display:block;text-align:center;" />
-            <button class="btn" type="submit" style="width:120px;padding:8px 0;font-size:0.95rem;background:linear-gradient(120deg,#fc5c2c,#ff7e5f);color:#fff;font-weight:600;border-radius:8px;box-shadow:0 2px 8px rgba(252,92,44,0.12);margin-top:2px;display:block;">Join</button>
+            <div style="display:flex;flex-direction:row;align-items:center;width:100%;max-width:600px;gap:10px;">
+              <input id="signup-email" name="email" type="email" placeholder="Email for early access" required style="flex:1;min-width:0;padding:10px 22px;font-size:1rem;font-weight:500;border-radius:8px;border:1px solid #2a2a32;background:#0c0c12;color:#fff;margin-bottom:2px;box-shadow:none;display:block;text-align:center;height:38px;" />
+              <button class="btn" type="submit" style="width:140px;height:38px;padding:0 0;font-size:1rem;background:linear-gradient(135deg,#fc5c2c,#ff7e5f);color:#fff;font-weight:800;border-radius:8px;box-shadow:0 2px 8px rgba(252,92,44,0.18);display:block;">Join</button>
+            </div>
           </form>
           <p style="font-size:0.95rem;color:#fff;margin-top:-2px;opacity:0.85;">No spam. Unsubscribe anytime.</p>
         </div>
@@ -469,7 +516,7 @@
     </div>
   </div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA21zV6nO1weSzc25y8NJusc3O2bCjj8nM"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA21zV6nO1weSzc25y8NJusc3O2bCjj8nM" async defer></script>
   <script>
     // Limited Spots modal logic
     document.getElementById('limited-link').onclick = function(e){
