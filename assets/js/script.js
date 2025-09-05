@@ -2,8 +2,8 @@ document.getElementById("signup-form").addEventListener("submit", async function
   event.preventDefault();
   const emailInput = document.getElementById("signup-email");
   const emailValue = emailInput.value.trim();
-  // Email validation regex
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Improved email validation regex
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   if (!emailRegex.test(emailValue)) {
     emailInput.style.borderColor = "#fc5c2c";
     alert("Please enter a valid email address.");
