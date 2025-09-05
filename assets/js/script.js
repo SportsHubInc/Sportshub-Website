@@ -20,7 +20,8 @@ document.getElementById("signup-form").addEventListener("submit", async function
     const text = await response.text();
     if (response.ok && text.includes("Success")) {
       document.getElementById("signup-form").reset();
-      alert("✅ Thanks for signing up! You'll hear from us soon.");
+      // Redirect to homepage after successful signup
+      window.location.href = "https://sportshub-website.netlify.app/";
     } else {
       alert("Could not submit. Try again later.");
     }
