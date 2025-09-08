@@ -13,19 +13,21 @@ document.getElementById("signup-form").addEventListener("submit", async function
   formData.append("email", emailValue);
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyifxP14ranqAiFU1XXiofrF8YrkduexLYsjiq8MDzH_2w5yXLGWiS0U_HfSixyhcj1/exec", {
+    const response = await fetch(event.target.action, {
       method: "POST",
       body: formData
     });
     const text = await response.text();
     if (response.ok && text.includes("Success")) {
-      document.getElementById("signup-form").reset();
+      event.target.reset();
       // Show the thank you modal by displaying the existing HTML modal
       const thankyouModal = document.getElementById("thankyou-modal");
       if (thankyouModal) {
         thankyouModal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent background scroll
         document.getElementById("close-thankyou").onclick = function() {
           thankyouModal.style.display = "none";
+          document.body.style.overflow = ""; // Restore scroll
         };
       } else {
         alert("Thank you for signing up!");
