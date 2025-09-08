@@ -1,4 +1,4 @@
-  <!-- Thank You Modal -->
+<!-- Thank You Modal -->
 <div id="thankyou-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(35,31,30,0.96);z-index:9999;overflow:auto;">
   <div style="max-width:520px;margin:80px auto;background:linear-gradient(135deg,#fc5c2c 0%,#231f1e 100%);padding:44px 32px 36px 32px;border-radius:22px;color:#fff;box-shadow:0 4px 32px rgba(252,92,44,0.22);text-align:center;position:relative;">
     <div style="font-size:3rem;margin-bottom:10px;">🏆</div>
@@ -636,10 +636,10 @@
     }
 
     // Simple form handling
-    const forms = document.querySelectorAll('form[action^="https://formspree.io"]');
+    const forms = document.querySelectorAll('form[action^="https://script.google.com/macros/s/"]');
     function showToast(msg){
       const t=document.createElement('div');
-       t.textContent=msg.replace(/\\/g, '');
+      t.textContent=msg.replace(/\\/g, '');
       t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#121217;border:1px solid #2a2a32;color:#fff;padding:12px 16px;border-radius:10px;z-index:9999;';
       document.body.appendChild(t); setTimeout(()=>t.remove(),2800);
     }
