@@ -24,3 +24,13 @@ input, button {
   padding: 10px;
   margin-top: 10px;
 }
+
+.mock {
+  background: linear-gradient(180deg, rgba(255,106,51,.18), rgba(255,60,0,.12));
+  border: 1px dashed #ccc;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: #888;
+  /* aspect-ratio removed so only height changes */
+}
